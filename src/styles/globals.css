@@ -14,12 +14,10 @@ body {
 
 body {
   background: rgb(195, 245, 255);
-  background: linear-gradient(45deg,  rgb(195,245,255,1) 0%, rgba(0, 212, 255, 1) 28%, rgba(99, 99, 255, 1) 100%);
+  background: linear-gradient(45deg,  rgb(195,245,255,1) 0%, rgba(0, 212, 255, 1) 28%, rgb(34, 34, 219) 100%);
 }
 
 a {
 
   text-decoration: none;
 }
-
-

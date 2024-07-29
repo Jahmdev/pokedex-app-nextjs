@@ -1,5 +1,14 @@
 .searchBar{
+    position: absolute;
     padding: 2rem 1rem;
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    top: 30px;
+    margin: auto;
+    
 }
 
 .searchBar input {

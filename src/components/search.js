@@ -1,30 +1,40 @@
-import React from "react";
-import {useState, useEffect} from "react";
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 
-function Search(){
+function Search() {
+  const [query, setQuery] = useState('');
+  const router = useRouter();
 
-    const [data, setData] = useState([]);
+  const handleInputChange = (e) => {
+    setQuery(e.target.value);
+  };
 
-    useEffect(() => {
-        fetch('https://pokeapi.co/api/v2/pokemon?limit=1000&offset=0')
-        .then(response => response.json())
-        .then(json =>console.log(json))
-    })
-    return(
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (query.trim()) {
+      router.push(`/${query.trim().toLowerCase()}`);
+    }
+  };
+
+  return (
     <>
-        <div className="searchBar">
-            <input
-                type ="text"
-                name="searchBar"
-                id="searchBar"
-                placeholder="Rechercher"
-            />
-        </div>
-        <div className="search_results">
-            <div className="search_result">Donnée</div>
-        </div>
+      <div className="searchBar">
+        <form onSubmit={handleSearch}>
+          <input
+            type="text"
+            name="searchBar"
+            id="searchBar"
+            placeholder="Rechercher"
+            value={query}
+            onChange={handleInputChange}
+            className="form-control"
+          />
+          <button type="submit"  className="btn btn-primary mt-2" >Rechercher</button>
+        </form>
+      </div>
     </>
-    );
+  );
 }
 
-export default Search
+export default Search;
+

@@ -1,4 +1,4 @@
-export interface PokemonPage{ // interface pour stock   er une page de Pokémons
+export interface PokemonPage{ // interface pour stocker une page de Pokémons
     results: { name: string}[],
     next: string| null,
     previous: string|null,
@@ -9,7 +9,7 @@ export interface Pokemon{ //interface pour stocker les caractéristiques du Pok�
     stats:{
         stat:{
             name: string,
-            base_stat:number,
+            base_stat: number,
         }
     }[],
     types: {
