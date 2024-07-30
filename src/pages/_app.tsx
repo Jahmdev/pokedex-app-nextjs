@@ -22,6 +22,10 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+    <div className="searchBar">
+      <Search/>
+    </div>
+
     <div className={anton.className}>
       <main>
         <Container className= 'py-4'>
@@ -29,9 +33,7 @@ export default function App({ Component, pageProps }: AppProps) {
         </Container>
       </main>
     </div>
-    <div className="searchBar">
-      <Search/>
-    </div>
+    
   
 
     </>

@@ -10,8 +10,7 @@ interface PokemonStat {
   stat: {
     name: string;
     url: string;
-  };
-  effort: number;
+ };
   base_stat: number;
 }
 
@@ -39,7 +38,7 @@ export default function PokemonDetailsPage() {
 
       <div className="d-flex flex-column align-items-center">
         <p>
-          <Link href="/" className="link-dark">
+          <Link href="/" className="link-dark ">
             ← Retour
           </Link>
         </p>
@@ -55,22 +54,26 @@ export default function PokemonDetailsPage() {
               height={400}
               onError={handleImageError}
             />
-            <div className="d-table-row bg-info p-4 mt-2">
+            <div className="d-table bg-info p-4 mt-2">
+            <div>
+                <strong>Stats:</strong>
+                <ul>
+                {pokemon.stats.map((stat: any) => (
+                <li key={stat.stat.name}>{stat.stat.name} = {stat.base_stat}</li>
+                ))}
+                </ul>
+            </div>
               <div>
-                <strong>Stats:</strong>{" "}
-                {pokemon.stats.map((stat: PokemonStat) => `${stat.stat.name} = ${stat.base_stat}`).join(",\n")}
+                <strong>Types:</strong> {pokemon.types.map(type => type.type.name).join(" ,   ")}
               </div>
               <div>
-                <strong>Types:</strong> {pokemon.types.map(type => type.type.name).join(",   ")}
-              </div>
-              <div>
-                <strong>Height:</strong> {pokemon.height * 10} cm
+                <strong>Height:</strong> {pokemon.height * 10} cm 
               </div>
               <div>
                 <strong>Weight:</strong> {pokemon.weight / 10} kg
               </div>
               <div>
-                <strong>Moves:</strong> {pokemon.moves.map(move => move.move.name).join(",   ")}
+                <strong>Moves:</strong> {pokemon.moves.map(move => move.move.name).join(" ,   ")}
               </div>
             </div>
           </>

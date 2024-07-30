@@ -28,8 +28,8 @@ function Search() {
             value={query}
             onChange={handleInputChange}
             className="form-control"
-          />
-          <button type="submit"  className="btn btn-primary mt-2" >Rechercher</button>
+            />
+          <button type="submit"  className="btn btn-primary mt-2" > ➜</button>
         </form>
       </div>
     </>
