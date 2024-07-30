@@ -1,4 +1,4 @@
-import { useState, createContext, ReactNode } from 'react';
+/*import { useState, createContext, ReactNode } from 'react';
 import * as React from 'react'
 
 interface Pokemon {
@@ -33,4 +33,4 @@ const PokemonProvider: React.FC<{ children: ReactNode }> = ({ children }): React
   );
 };
 
-export { PokemonProvider, PokemonContext };
+export { PokemonProvider, PokemonContext };*/

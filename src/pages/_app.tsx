@@ -6,7 +6,7 @@ import { Container } from 'react-bootstrap';
 import Head from 'next/head';
 import "@/styles/search.css";
 import Search from '@/components/search';
-import { PokemonProvider } from '../contexts/PokemonContext';
+//import { PokemonProvider } from '../contexts/PokemonContext';
 
 
 
@@ -32,9 +32,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <div className="searchBar">
       <Search/>
     </div>
-    <PokemonProvider>
-      <Component {...pageProps} />
-    </PokemonProvider>
+  
 
     </>
   
