@@ -6,13 +6,7 @@ import { Spinner } from "react-bootstrap";
 import Image from "next/image";
 import usePokemon from "@/hooks/usePokemon";
 
-interface PokemonStat {
-  stat: {
-    name: string;
-    url: string;
- };
-  base_stat: number;
-}
+
 
 export default function PokemonDetailsPage() {
   const router = useRouter();
@@ -38,7 +32,7 @@ export default function PokemonDetailsPage() {
 
       <div className="d-flex flex-column align-items-center">
         <p>
-          <Link href="/" className="link-dark ">
+          <Link href="/" className="link-dark m-auto">
             ← Retour
           </Link>
         </p>

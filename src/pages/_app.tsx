@@ -6,7 +6,7 @@ import { Container } from 'react-bootstrap';
 import Head from 'next/head';
 import "@/styles/search.css";
 import Search from '@/components/search';
-//import { PokemonProvider } from '../contexts/PokemonContext';
+import Team from '@/components/PokemonTeam';
 
 
 
@@ -21,6 +21,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <div>
+        <Team />
+      </div>
 
     <div className="searchBar">
       <Search/>
@@ -37,6 +40,6 @@ export default function App({ Component, pageProps }: AppProps) {
   
 
     </>
-  
+    
   );
 }

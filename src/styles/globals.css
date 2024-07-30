@@ -21,3 +21,14 @@ a {
 
   text-decoration: none;
 }
+
+h2 {
+  border: 1rem solid;
+  color: orangered;
+  background-color: orange;
+  display: table-cell ;
+}
+
+ul {
+  color: black;
+}
