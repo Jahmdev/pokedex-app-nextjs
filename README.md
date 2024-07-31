@@ -32,15 +32,15 @@ git clone https://github.com/Jahmdev/pokedex-app-nextjs.git
 
 2.  Installer les dépendances :
 
-```npm i axios bootstrap react-bootstrap swr
+```npm i axios bootstrap react-bootstrap swr```
 
 Lancer le serveur de développement :
 
-```npm run dev
+```npm run dev```
 
 4.  Ouvrir un navigateur et accéder à l'application :
 
-    ```http://localhost:3000
+    http://localhost:3000
 
 
 Choix techniques et justifications
