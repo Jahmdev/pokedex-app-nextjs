@@ -22,9 +22,3 @@ export async function getPokemon(name: string) {
     return response.data;
   }
   
-  // Fonction asynchrone pour définir un surnom pour un pokémon
-  export async function setNickname(pokemon: Pokemon, nickname: string) {
-    // Crée un nouvel objet pokémon avec le surnom mis à jour
-    return { ...pokemon, name: nickname };
-  }
-  

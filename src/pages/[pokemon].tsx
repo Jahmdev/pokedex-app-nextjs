@@ -2,16 +2,17 @@ import { useRouter } from "next/router";
 
 import Head from "next/head";
 import Link from "next/link";
-import { Spinner } from "react-bootstrap";
+import { Button, Form, Spinner } from "react-bootstrap";
 import Image from "next/image";
 import usePokemon from "@/hooks/usePokemon";
+
 
 
 
 export default function PokemonDetailsPage() {
   const router = useRouter();
   const pokemonName = router.query.pokemon?.toString() || "";
-  const { pokemon, pokemonLoading } = usePokemon(pokemonName);
+  const { pokemon, pokemonLoading, mutatePokemon } = usePokemon(pokemonName);
 
   const handleImageError = () => {
     return (

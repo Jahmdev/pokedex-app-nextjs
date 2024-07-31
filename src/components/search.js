@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 
+
 function Search() {
   // Initialiser l'état de la requête de recherche avec une chaîne vide
   const [query, setQuery] = useState('');
