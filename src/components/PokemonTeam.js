@@ -90,7 +90,7 @@ function Equipe() {
       {router.query.pokemon && (
         <div>
           <button type="submit" className="btn btn-success mt-2" onClick={() => handleAddPokemon(router.query.pokemon)}>
-            Ajouter à l'équipe
+            Ajouter à mon équipe
           </button>
           {teamData.equipe.length >= 6 && (
             <p className="text-wrap text-danger">Votre équipe est pleine !</p>
