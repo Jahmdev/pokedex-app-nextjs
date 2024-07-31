@@ -1,65 +1,55 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-
+import Image from 'next/image';
+import Search from '@/components/search';
 
 function Equipe() {
-  const [equipe, setEquipe] = useState([]);
-  const [pokemonData, setPokemonData] = useState({});
+  const [teamData, setTeamData] = useState({
+    equipe: [],
+    pokemonImages: []
+  });
   const router = useRouter();
 
   useEffect(() => {
-    const storedEquipe = window.localStorage.getItem('equipe');
-    if (storedEquipe) {
-      try {
-        const parsedEquipe = JSON.parse(storedEquipe);
-        setEquipe(parsedEquipe);
-      } catch (error) {
-        console.error('Erreur lors de la récupération de l\'équipe', error);
-      }
+    const storedTeamData = window.localStorage.getItem('teamData');
+    if (storedTeamData) {
+      setTeamData(JSON.parse(storedTeamData));
     }
   }, []);
 
   useEffect(() => {
-    try {
-      const stringifiedEquipe = JSON.stringify(equipe);
-      window.localStorage.setItem('equipe', stringifiedEquipe);
-    } catch (error) {
-      console.error('Erreur lors de la sauvegarde de l\'équipe', error);
-    }
-  }, [equipe]);
+    window.localStorage.setItem('teamData', JSON.stringify(teamData));
+  }, [teamData]);
 
-  const handleAddPokemon = (pokemon) => {
-    if (equipe.length < 6) {
-      setEquipe([...equipe, pokemon]);
+  const handleAddPokemon = async (pokemon) => {
+    if (teamData.equipe.length < 6 && !teamData.equipe.includes(pokemon)) {
+      const newTeamData = { ...teamData };
+      newTeamData.equipe.push(pokemon);
+      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
+      const data = await response.json();
+      newTeamData.pokemonImages.push({ pokemon, image: data.sprites.other["official-artwork"].front_default });
+      setTeamData(newTeamData);
     } else {
-      alert("Votre équipe est déjà pleine !");
+      alert("Votre équipe est déjà pleine ou le Pokemon est déjà dans l'équipe!");
     }
   };
 
   const handleRemovePokemon = (pokemon) => {
-    setEquipe(equipe.filter((p) => p !== pokemon));
+    const newTeamData = { ...teamData };
+    newTeamData.equipe = newTeamData.equipe.filter((p) => p !== pokemon);
+    newTeamData.pokemonImages = newTeamData.pokemonImages.filter((p) => p.pokemon !== pokemon);
+    setTeamData(newTeamData);
   };
-
-  useEffect(() => {
-    const fetchPokemonData = async () => {
-      const promises = equipe.map((pokemon) => {
-        return fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
-          .then((response) => response.json())
-          .then((data) => ({ [pokemon]: data }));
-      });
-      const results = await Promise.all(promises);
-      const pokemonData = results.reduce((acc, current) => ({ ...acc, ...current }), {});
-      setPokemonData(pokemonData);
-    };
-    fetchPokemonData();
-  }, [equipe]);
 
   return (
     <div>
+      <div className="searchBar">
+        <Search/>
+      </div>
       <h2>
         <ul>
           Équipe :
-          {equipe.map((pokemon, index) => (
+          {teamData.equipe.map((pokemon, index) => (
             <li key={index}>
               {pokemon}
               <button type="button" className="btn btn-danger ml-2" onClick={() => handleRemovePokemon(pokemon)}>
@@ -69,12 +59,24 @@ function Equipe() {
           ))}
         </ul>
       </h2>
+      <div className="d-flex flex-direction-column flex-wrap justify-content-center border border-width-medium">
+        {teamData.pokemonImages.map((pokemon, index) => (
+          <div key={index} className="m-2">
+            <Image
+              src={pokemon.image}
+              alt={"Pokemon: " + pokemon.pokemon}
+              width={100}
+              height={100}
+            />
+          </div>
+        ))}
+      </div>
       {router.query.pokemon && (
         <div>
           <button type="submit" className="btn btn-success mt-2" onClick={() => handleAddPokemon(router.query.pokemon)}>
             Ajouter à l'équipe
           </button>
-          {equipe.length >= 6 && (
+          {teamData.equipe.length >= 6 && (
             <p className="text-wrap text-danger">Votre équipe est pleine !</p>
           )}
         </div>

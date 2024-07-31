@@ -5,7 +5,7 @@ import { Anton } from 'next/font/google'
 import { Container } from 'react-bootstrap';
 import Head from 'next/head';
 import "@/styles/search.css";
-import Search from '@/components/search';
+
 import Team from '@/components/PokemonTeam';
 
 
@@ -25,17 +25,13 @@ export default function App({ Component, pageProps }: AppProps) {
         <Team />
       </div>
 
-    <div className="searchBar">
-      <Search/>
-    </div>
-
-    <div className={anton.className}>
-      <main>
-        <Container className= 'py-4'>
-          <Component {...pageProps} /> 
-        </Container>
-      </main>
-    </div>
+      <div className={anton.className}>
+        <main>
+          <Container className= 'py-4'>
+            <Component {...pageProps} /> 
+          </Container>
+        </main>
+      </div>
     
   
 
