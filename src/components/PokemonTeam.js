@@ -52,7 +52,7 @@ function Equipe() {
 
   return (
     // En-tête, barre de recherche et bouton retour 
-    <div className="container">
+    <div>
       <h1 className='text-center mb-4'>Attrapez-les tous</h1>
       <div className="searchBar">
         <Search/>
@@ -64,28 +64,24 @@ function Equipe() {
       </p>
 
       <h2>
-        <ul className="row justify-content-center">
+        <ul style={{ display: 'flex', flexWrap: 'wrap', listStyle:'none' }}>
           Votre équipe :
           {teamData.equipe.map((pokemon, index) => (
-            <li key={index} className="col-sm-6 col-md-4 col-lg-3 mb-4">
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">{pokemon}</h5>
-                  {teamData.pokemonImages.find((image) => image.pokemon === pokemon) && (
-                    <div className="m-2">
-                      <Image
-                        src={teamData.pokemonImages.find((image) => image.pokemon === pokemon).image}
-                        alt={"Pokémon : " + pokemon}
-                        width={100}
-                        height={100}
-                      />
-                    </div>
-                  )}
-                  <button type="button" className="btn btn-danger ml-2" onClick={() => handleRemovePokemon(pokemon)}>
-                    Supprimer
-                  </button>
+            <li key={index} style={{ marginRight: 20 }}>
+              {pokemon}
+              {teamData.pokemonImages.find((image) => image.pokemon === pokemon) && (
+                <div className="m-2">
+                  <Image
+                    src={teamData.pokemonImages.find((image) => image.pokemon === pokemon).image}
+                    alt={"Pokémon : " + pokemon}
+                    width={100}
+                    height={100}
+                  />
                 </div>
-              </div>
+              )}
+              <button type="button" className="btn btn-danger ml-2" onClick={() => handleRemovePokemon(pokemon)}>
+                Supprimer
+              </button>
             </li>
           ))}
         </ul>
